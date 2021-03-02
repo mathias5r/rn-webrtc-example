@@ -6,14 +6,19 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
-    "test": "jest",
+    "test": "jest --forceExit",
     "lint": "eslint ."
   },
   "dependencies": {
+    "@types/jest": "^26.0.20",
+    "@types/react": "^17.0.2",
+    "@types/react-native": "^0.63.50",
+    "@types/react-test-renderer": "^17.0.1",
     "react": "16.13.1",
     "react-native": "0.63.4",
     "react-native-webrtc": "1.87.2",
-    "socket.io-client": "3.0.4"
+    "socket.io-client": "3.0.4",
+    "typescript": "^4.2.2"
   },
   "devDependencies": {
     "@babel/core": "7.8.4",
