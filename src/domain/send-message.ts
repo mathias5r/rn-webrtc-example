@@ -1,6 +1,6 @@
 export interface Message {
   instrument: string;
-  node: string;
+  note: string;
 }
 
 export interface SendMessage {

@@ -4,7 +4,7 @@ import { Message, SendMessage } from '../../../domain/send-message';
 
 const makeFakeMessage = (): Message => ({
   instrument: 'piano',
-  node: 'A',
+  note: 'A',
 });
 
 const makeSocketSenderStub = (): SocketSender => {
