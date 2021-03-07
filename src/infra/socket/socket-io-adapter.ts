@@ -1,4 +1,4 @@
-import { Message } from '../../domain/send-message';
+import { Message } from '../../domain/use-cases/send-message/send-message';
 import { SocketSender } from './../../data/protocols/socket/socket-sender';
 import { SocketIOHelper } from '../helpers/socket-io-helper';
 

@@ -1,6 +1,9 @@
 import { SocketSendMessage } from './socket-send-message';
 import { SocketSender } from '../../protocols/socket/socket-sender';
-import { Message, SendMessage } from '../../../domain/send-message';
+import {
+  Message,
+  SendMessage,
+} from '../../../domain/use-cases/send-message/send-message';
 
 const makeFakeMessage = (): Message => ({
   instrument: 'piano',
