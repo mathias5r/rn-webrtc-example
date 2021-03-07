@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react';
 import { View } from 'react-native';
 
-import { Message, SendMessage } from '../domain/send-message';
+import {
+  Message,
+  SendMessage,
+} from '../domain/use-cases/send-message/send-message';
 
 interface AppProps {
   sendMessage: SendMessage;
