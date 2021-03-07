@@ -9,7 +9,6 @@ export class SocketIOHelper {
     if (!this._instance) {
       this._instance = io(
         process.env.URL_SOCKET_SERVER || 'http://192.168.0.23:3000',
-        { transports: ['websocket'] },
       );
       this._instance.on('connect', () => {
         console.log(`Socket ${this._instance.id} connected`);

@@ -4,5 +4,5 @@ export interface Message {
 }
 
 export interface SendMessage {
-  send: (message: Message) => Promise<void>;
+  send: (message: Message) => void;
 }

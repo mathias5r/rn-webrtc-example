@@ -9,8 +9,8 @@ const makeFakeMessage = (): Message => ({
 
 const makeSocketSenderStub = (): SocketSender => {
   class SocketSenderStub implements SocketSender {
-    send(_: Message): Promise<void> {
-      return new Promise((resolve) => resolve());
+    send(_: Message): void {
+      return;
     }
   }
   return new SocketSenderStub();
@@ -31,10 +31,10 @@ const makeSut = (): SutTypes => {
 };
 
 describe('SendMessage UseCase', () => {
-  it('Should call SocketSender with correct values', async () => {
+  it('Should call SocketSender with correct values', () => {
     const { socketSenderStub, sendMessageSut } = makeSut();
     const sendSpy = jest.spyOn(socketSenderStub, 'send');
-    await sendMessageSut.send(makeFakeMessage());
+    sendMessageSut.send(makeFakeMessage());
     expect(sendSpy).toHaveBeenCalledWith(makeFakeMessage());
   });
 });
