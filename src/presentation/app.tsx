@@ -13,8 +13,11 @@ interface AppProps {
 export const App: React.FC<AppProps> = ({ sendMessage }) => {
   useEffect(() => {
     const message: Message = {
-      instrument: 'piano',
-      note: 'A',
+      type: 'song',
+      payload: {
+        instrument: 'piano',
+        note: 'A',
+      },
     };
     sendMessage.send(message);
   }, [sendMessage]);
