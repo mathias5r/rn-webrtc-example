@@ -1,6 +1,6 @@
 export interface Message {
-  instrument: string;
-  note: string;
+  type: string;
+  payload: any;
 }
 
 export interface SendMessage {

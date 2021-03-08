@@ -6,8 +6,11 @@ import {
 } from '../../../domain/use-cases/send-message/send-message';
 
 const makeFakeMessage = (): Message => ({
-  instrument: 'piano',
-  note: 'A',
+  type: 'song',
+  payload: {
+    instrument: 'piano',
+    note: 'A',
+  },
 });
 
 const makeSocketSenderStub = (): SocketSender => {

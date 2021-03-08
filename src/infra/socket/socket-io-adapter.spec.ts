@@ -9,8 +9,11 @@ jest.mock('socket.io-client', () => ({
 }));
 
 const makeFakeMessage = () => ({
-  instrument: 'Piano',
-  note: 'A',
+  type: 'song',
+  payload: {
+    instrument: 'Piano',
+    note: 'A',
+  },
 });
 
 describe('SocketIOAdapter', () => {
@@ -22,7 +25,8 @@ describe('SocketIOAdapter', () => {
 
   it('Should call emit with correct values', () => {
     const sut = new SocketIOAdapter();
-    sut.send(makeFakeMessage());
-    expect(socket.emit).toHaveBeenCalledWith('message', makeFakeMessage());
+    const message = makeFakeMessage();
+    sut.send(message);
+    expect(socket.emit).toHaveBeenCalledWith(message.type, message.payload);
   });
 });

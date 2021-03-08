@@ -5,7 +5,7 @@ import { SocketIOHelper } from '../helpers/socket-io-helper';
 export class SocketIOAdapter implements SocketSender {
   send(message: Message): void {
     const socket = SocketIOHelper.getInstance();
-    socket.emit('message', message);
+    socket.emit(message.type, message.payload);
     return;
   }
 }
