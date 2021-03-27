@@ -40,6 +40,48 @@ export class SocketIOAdapter implements SocketSender, SocketReceiver {
         },
       }),
     );
+    socket.on('created', (args: any) =>
+      callback({
+        type: 'created',
+        payload: args,
+      }),
+    );
+    socket.on('joined', (args: any) =>
+      callback({
+        type: 'joined',
+        payload: args,
+      }),
+    );
+    socket.on('ready', (args: any) =>
+      callback({
+        type: 'ready',
+        payload: args,
+      }),
+    );
+    socket.on('full', () =>
+      callback({
+        type: 'full',
+        payload: {},
+      }),
+    );
+    socket.on('offer', (args: any) =>
+      callback({
+        type: 'offer',
+        payload: args,
+      }),
+    );
+    socket.on('answer', (args: any) =>
+      callback({
+        type: 'answer',
+        payload: args,
+      }),
+    );
+    socket.on('candidate', (args: any) =>
+      callback({
+        type: 'candidate',
+        payload: args,
+      }),
+    );
     return;
   }
 }

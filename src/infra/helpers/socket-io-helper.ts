@@ -6,7 +6,7 @@ export class SocketIOHelper {
   public static getInstance(): Socket {
     if (!this._instance) {
       this._instance = io(
-        process.env.URL_SOCKET_SERVER || 'http://192.168.0.20:3000',
+        process.env.URL_SOCKET_SERVER || 'https://sound-share-server.herokuapp.com',
       );
     }
     return this._instance;
