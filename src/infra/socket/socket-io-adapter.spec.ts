@@ -10,6 +10,11 @@ jest.mock('socket.io-client', () => ({
   }),
 }));
 
+const makeSut = (): SocketIOAdapter => {
+  const messageTypes = ['disconnect', 'connect', 'error', 'connect_error'];
+  return new SocketIOAdapter(messageTypes);
+};
+
 const makeFakeMessage = () => ({
   type: 'song',
   payload: {
@@ -26,14 +31,14 @@ describe('SocketIOAdapter', () => {
   });
 
   it('Should call emit with correct values', () => {
-    const sut = new SocketIOAdapter();
+    const sut = makeSut();
     const message = makeFakeMessage();
     sut.send(message);
     expect(socket.emit).toHaveBeenCalledWith(message.type, message.payload);
   });
 
   it('Should call on with correct values', () => {
-    const sut = new SocketIOAdapter();
+    const sut = makeSut();
     const callback = jest.fn();
     sut.receive(callback);
     expect(socket.on).toHaveBeenNthCalledWith(

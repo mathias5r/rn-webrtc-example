@@ -4,6 +4,8 @@ import { SocketSender } from './../../data/protocols/socket/socket-sender';
 import { SocketIOHelper } from '../helpers/socket-io-helper';
 
 export class SocketIOAdapter implements SocketSender, SocketReceiver {
+  constructor(private readonly messageTypes: string[]) {}
+
   send(message: Message): void {
     const socket = SocketIOHelper.getInstance();
     socket.emit(message.type, message.payload);
@@ -12,33 +14,13 @@ export class SocketIOAdapter implements SocketSender, SocketReceiver {
 
   receive(callback: (message: Message) => void): void {
     const socket = SocketIOHelper.getInstance();
-    socket.on('disconnect', () =>
-      callback({
-        type: 'disconnect',
-        payload: null,
-      }),
-    );
-    socket.on('connect', () =>
-      callback({
-        type: 'connect',
-        payload: null,
-      }),
-    );
-    socket.on('error', (err: any) =>
-      callback({
-        type: 'error',
-        payload: {
-          error: err.message,
-        },
-      }),
-    );
-    socket.on('connect_error', (err: any) =>
-      callback({
-        type: 'connect_error',
-        payload: {
-          error: err.message,
-        },
-      }),
+    this.messageTypes.forEach((type: string) =>
+      socket.on(type, (payload: any) =>
+        callback({
+          type,
+          payload,
+        }),
+      ),
     );
     return;
   }

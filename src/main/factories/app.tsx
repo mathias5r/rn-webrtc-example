@@ -6,7 +6,8 @@ import { SocketIOAdapter } from '../../infra/socket/socket-io-adapter';
 import { App as AppComponent } from '../../presentation/app';
 
 const App: React.FC = () => {
-  const socketAdapter = new SocketIOAdapter();
+  const messageTypes = ['disconnect', 'connect', 'error', 'connect_error'];
+  const socketAdapter = new SocketIOAdapter(messageTypes);
   const socketSendMessage = new SocketSendMessage(socketAdapter);
   const socketReceiveMessage = new SocketReceiveMessage(socketAdapter);
   socketReceiveMessage.receive((message: Message) => console.log(message));
