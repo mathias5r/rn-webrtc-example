@@ -5,8 +5,9 @@ import { SignalingSender } from '../protocols/signaling-sender';
 import WebRTCMessageTypes from '../../utils/enums/WebRTCMessageType';
 
 export class WebRTCAdapter implements WebRTCSender {
-  private roomID = 'test-room';
+  private roomID = 'test-room2';
   private isMaster = false;
+  private peerID: string | null = null;
 
   constructor(
     private readonly signalingSender: SignalingSender,
@@ -26,13 +27,24 @@ export class WebRTCAdapter implements WebRTCSender {
   }
 
   private onCreated(): void {
+    console.log('created');
     this.isMaster = true;
   }
 
+  private onJoined(args: any): void {
+    console.log('joined');
+    this.isMaster = false;
+    this.peerID = args.socketID;
+  }
+
   private messageHandler(message: Message) {
+    console.log(message);
     switch (message.type) {
       case WebRTCMessageTypes.CREATED:
         this.onCreated();
+        break;
+      case WebRTCMessageTypes.JOINED:
+        this.onJoined(message.payload);
         break;
       default:
         break;

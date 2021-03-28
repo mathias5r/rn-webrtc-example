@@ -51,7 +51,7 @@ describe('WebRTC Adapter', () => {
     expect(receiveSpy).toHaveBeenCalledWith(expect.any(Function));
   });
 
-  it('Should call onCreate with correct values', async () => {
+  it('Should call onCreate with', async () => {
     const signalingSenderStub = makeSignalingSenderStub();
     const signalingReceiverStub = makeSignalingReceiverStub();
     jest
@@ -67,6 +67,24 @@ describe('WebRTC Adapter', () => {
       'onCreated',
     );
     new WebRTCAdapter(signalingSenderStub, signalingReceiverStub);
-    expect(onCreatedSpy).toHaveBeenCalledWith();
+    expect(onCreatedSpy).toHaveBeenCalled();
+  });
+
+  it('Should call onJoined with', async () => {
+    const signalingSenderStub = makeSignalingSenderStub();
+    const signalingReceiverStub = makeSignalingReceiverStub();
+    jest
+      .spyOn(signalingReceiverStub, 'receive')
+      .mockImplementationOnce((callback) =>
+        callback({
+          type: 'joined',
+          payload: {
+            socketID: 'any_id',
+          },
+        }),
+      );
+    const onJoinedSpy = jest.spyOn(WebRTCAdapter.prototype as any, 'onJoined');
+    new WebRTCAdapter(signalingSenderStub, signalingReceiverStub);
+    expect(onJoinedSpy).toHaveBeenCalledWith({ socketID: 'any_id' });
   });
 });
