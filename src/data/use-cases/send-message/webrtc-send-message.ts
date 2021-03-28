@@ -5,7 +5,7 @@ import {
 
 import { WebRTCSender } from '../../protocols/webrtc/webrtc-sender';
 
-export default class WebRTCSendMessage implements SendMessage {
+export class WebRTCSendMessage implements SendMessage {
   constructor(private readonly webRTCSender: WebRTCSender) {}
 
   send(message: Message): void {

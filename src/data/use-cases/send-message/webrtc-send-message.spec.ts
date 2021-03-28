@@ -1,7 +1,7 @@
 import { Message } from '../../../domain/use-cases/send-message/send-message';
 import { WebRTCSender } from '../../protocols/webrtc/webrtc-sender';
 
-import WebRTCSendMessage from './webrtc-send-message';
+import { WebRTCSendMessage } from './webrtc-send-message';
 
 const makeFakeMessage = (): Message => ({
   type: 'song',

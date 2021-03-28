@@ -2,8 +2,11 @@ import { Message } from './../../domain/use-cases/send-message/send-message';
 import { SocketReceiver } from './../../data/protocols/socket/socket-receiver';
 import { SocketSender } from './../../data/protocols/socket/socket-sender';
 import { SocketIOHelper } from '../helpers/socket-io-helper';
+import { SignalingSender } from '../protocols/signaling-sender';
+import { SignalingReceiver } from '../protocols/signaling-receiver';
 
-export class SocketIOAdapter implements SocketSender, SocketReceiver {
+export class SocketIOAdapter
+  implements SocketSender, SocketReceiver, SignalingSender, SignalingReceiver {
   constructor(private readonly messageTypes: string[]) {}
 
   send(message: Message): void {
