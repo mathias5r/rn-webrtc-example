@@ -37,7 +37,7 @@ describe('WebRTC Adapter', () => {
     new WebRTCAdapter(signalingSenderStub, signalingReceiverStub);
     expect(sendSpy).toHaveBeenCalledWith({
       payload: {
-        roomID: 'test-room',
+        roomID: 'test-room2',
       },
       type: 'create_or_join',
     });

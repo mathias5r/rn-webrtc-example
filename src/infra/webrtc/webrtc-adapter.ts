@@ -27,18 +27,15 @@ export class WebRTCAdapter implements WebRTCSender {
   }
 
   private onCreated(): void {
-    console.log('created');
     this.isMaster = true;
   }
 
   private onJoined(args: any): void {
-    console.log('joined');
     this.isMaster = false;
     this.peerID = args.socketID;
   }
 
   private messageHandler(message: Message) {
-    console.log(message);
     switch (message.type) {
       case WebRTCMessageTypes.CREATED:
         this.onCreated();
