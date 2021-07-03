@@ -1,10 +1,11 @@
 import {
   Message,
   SendMessage,
-} from '../../../domain/use-cases/send-message/send-message';
-import { SocketReceiver } from '../../protocols/socket/socket-receiver';
-import { ReceiveMessage } from '../../../domain/use-cases/receive-message/receive-message';
-import { SocketSender } from '../../protocols/socket/socket-sender';
+} from '@/domain/use-cases/send-message/send-message';
+import { ReceiveMessage } from '@/domain/use-cases/receive-message/receive-message';
+
+import { SocketReceiver } from '@/data/protocols/socket/socket-receiver';
+import { SocketSender } from '@/data/protocols/socket/socket-sender';
 
 export class Socket implements ReceiveMessage, SendMessage {
   constructor(

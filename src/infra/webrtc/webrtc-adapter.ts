@@ -1,8 +1,11 @@
-import { WebRTCSender } from '../../data/protocols/webrtc/webrtc-sender';
-import { Message } from '../../domain/use-cases/send-message/send-message';
-import { SignalingReceiver } from '../protocols/signaling-receiver';
-import { SignalingSender } from '../protocols/signaling-sender';
-import WebRTCMessageTypes from '../../utils/enums/WebRTCMessageType';
+import { Message } from '@/domain/use-cases/send-message/send-message';
+
+import { WebRTCSender } from '@/data/protocols/webrtc/webrtc-sender';
+
+import { SignalingReceiver } from '@/infra/protocols/signaling-receiver';
+import { SignalingSender } from '@/infra/protocols/signaling-sender';
+
+import { WebRTCMessageType } from '@/utils/enums';
 
 export class WebRTCAdapter implements WebRTCSender {
   private roomID = 'test-room2';
@@ -37,10 +40,10 @@ export class WebRTCAdapter implements WebRTCSender {
 
   private messageHandler(message: Message) {
     switch (message.type) {
-      case WebRTCMessageTypes.CREATED:
+      case WebRTCMessageType.CREATED:
         this.onCreated();
         break;
-      case WebRTCMessageTypes.JOINED:
+      case WebRTCMessageType.JOINED:
         this.onJoined(message.payload);
         break;
       default:

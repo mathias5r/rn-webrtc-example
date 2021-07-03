@@ -1,7 +1,9 @@
 import { Socket } from './socket';
-import { SocketReceiver } from '../../protocols/socket/socket-receiver';
-import { Message } from '../../../domain/use-cases/send-message/send-message';
-import { SocketSender } from '../../protocols/socket/socket-sender';
+
+import { Message } from '@/domain/use-cases/send-message/send-message';
+
+import { SocketReceiver } from '@/data/protocols/socket/socket-receiver';
+import { SocketSender } from '@/data/protocols/socket/socket-sender';
 
 const makeSocketReceiverStub = (): SocketReceiver => {
   class SocketReceiverStub implements SocketReceiver {

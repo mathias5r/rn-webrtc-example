@@ -1,4 +1,5 @@
 import { io } from 'socket.io-client';
+
 import { SocketIOAdapter } from './socket-io-adapter';
 
 jest.mock('socket.io-client', () => ({

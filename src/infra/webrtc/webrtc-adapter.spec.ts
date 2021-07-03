@@ -1,8 +1,10 @@
 /* eslint-disable no-new */
-import { Message } from '../../domain/use-cases/send-message/send-message';
-import { SignalingSender } from '../protocols/signaling-sender';
+import { Message } from '@/domain/use-cases/send-message/send-message';
+
+import { SignalingSender } from '@/infra/protocols/signaling-sender';
+import { SignalingReceiver } from '@/infra/protocols/signaling-receiver';
+
 import { WebRTCAdapter } from './webrtc-adapter';
-import { SignalingReceiver } from '../protocols/signaling-receiver';
 
 const makeSignalingSenderStub = (): SignalingSender => {
   class SignalingSenderStub implements SignalingSender {

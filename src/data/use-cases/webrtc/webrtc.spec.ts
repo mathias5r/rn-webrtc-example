@@ -1,7 +1,8 @@
-import { Message } from '../../../domain/use-cases/send-message/send-message';
-import { WebRTCSender } from '../../protocols/webrtc/webrtc-sender';
+import { Message } from '@/domain/use-cases/send-message/send-message';
 
-import { WebRTCSendMessage } from './webrtc';
+import { WebRTCSender } from '@/data/protocols/webrtc/webrtc-sender';
+
+import { WebRTC } from './webrtc';
 
 const makeFakeMessage = (): Message => ({
   type: 'song',
@@ -21,13 +22,13 @@ const makeWebRTCSenderStub = (): WebRTCSender => {
 };
 
 interface SutTypes {
-  webRTCSendMessageSut: WebRTCSendMessage;
+  webRTCSendMessageSut: WebRTC;
   webRTCSenderStub: WebRTCSender;
 }
 
 const makeSut = (): SutTypes => {
   const webRTCSenderStub = makeWebRTCSenderStub();
-  const webRTCSendMessageSut = new WebRTCSendMessage(webRTCSenderStub);
+  const webRTCSendMessageSut = new WebRTC(webRTCSenderStub);
 
   return {
     webRTCSenderStub,
